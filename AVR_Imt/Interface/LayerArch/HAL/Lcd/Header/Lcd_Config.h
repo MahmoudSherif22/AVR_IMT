@@ -1,0 +1,19 @@
+/*
+ * Lcd_Config.h
+ *
+ *  Created on: Apr 18, 2024
+ *      Author: 20110
+ */
+
+#ifndef HAL_LCD_HEADER_LCD_CONFIG_H_
+#define HAL_LCD_HEADER_LCD_CONFIG_H_
+#include"../../../MCAL/DIO/Header/DIO_Private.h"
+#include "../../../MCAL/DIO/Header/DIO_Interface.h"
+
+#define Lcd_ControlGroup  DIO_GroupD//DIO_GroupD
+#define Lcd_DataGroup DIO_GroupC // changed from group B to group c
+
+#define Lcd_RS   DIO_Pin0
+#define Lcd_RW   DIO_Pin1
+#define Lcd_E   DIO_Pin2
+#endif /* HAL_LCD_HEADER_LCD_CONFIG_H_ */

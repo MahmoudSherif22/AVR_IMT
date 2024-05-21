@@ -1,0 +1,127 @@
+/*
+ * Lcd_Program.c
+ *
+ *  Created on: Apr 19, 2024
+ *      Author: 20110
+ */
+#include <util/delay.h>
+
+#include "../../../COMMON/Stdtype.h"
+#include "../../../COMMON/Bitmath.h"
+
+
+#include "../../../MCAL/DIO/Header/DIO_Private.h"
+#include "../../../MCAL/DIO/Header/DIO_Interface.h"
+
+#include "../Header/Lcd_Private.h"
+#include "../Header/Lcd_Interface.h"
+
+void Lcd_SendString(u16 *String)
+{
+
+	u8 i = 0;
+	if (String != NULL)
+	{ // corner case
+
+		while(String[i] != '\0')
+		{
+			//Display_2LinesMode(i);
+			//Display_ShiftingMode(i);
+			Lcd_SendData(String[i]);
+			_delay_ms(500);
+			i++;
+		}
+
+	}
+}
+
+void Lcd_init()
+{
+	// Set direction as output
+	DIO_SelectDirectionForPin(Lcd_ControlGroup,Lcd_RS,Output);
+	DIO_SelectDirectionForPin(Lcd_ControlGroup,Lcd_RW,Output);
+	DIO_SelectDirectionForPin(Lcd_ControlGroup,Lcd_E,Output);
+	DIO_SelectDirectionForGroup(Lcd_DataGroup,MaxValue);
+
+	_delay_ms(40);
+
+	Lcd_SendCommand(Lcd_8Bit2Line8size);
+	_delay_ms(2);
+
+	Lcd_SendCommand(Lcd_DisplayOnWithoutCursor);
+	_delay_ms(2);
+
+	Lcd_SendCommand(0x01);
+	_delay_ms(2);
+
+	Lcd_SendCommand(Lcd_EntryMode2); //Lcd_EntryModeOff
+	_delay_ms(2);
+
+}
+
+void Lcd_SendCommand(u8 Command)
+{
+
+	//Set RS as Low  _ send Command
+	DIO_SelectOutputTypeForPin(Lcd_ControlGroup,Lcd_RS,Low);
+	//Set RW as Low  _ write
+	DIO_SelectOutputTypeForPin(Lcd_ControlGroup,Lcd_RW,Low);
+	// Set high for enable
+	DIO_SelectOutputTypeForPin(Lcd_ControlGroup,Lcd_E,High);
+	// Send Command
+	DIO_SelectOutputTypeForGroup(Lcd_DataGroup,Command);
+	// Set Enable as low  Ù�
+	DIO_SelectOutputTypeForPin(Lcd_ControlGroup,Lcd_E,Low);
+
+}
+void Lcd_SendData(u8 Data)
+{
+
+	//Set RS as high  _ send Data
+	DIO_SelectOutputTypeForPin(Lcd_ControlGroup,Lcd_RS,High);
+	//Set Rw as Low  _ write
+	DIO_SelectOutputTypeForPin(Lcd_ControlGroup,Lcd_RW,Low);
+	// Set high for enable
+	DIO_SelectOutputTypeForPin(Lcd_ControlGroup,Lcd_E,High);
+	// Send Data
+	DIO_SelectOutputTypeForGroup(Lcd_DataGroup,Data);
+	// Set Enable as low  Ù�
+	DIO_SelectOutputTypeForPin(Lcd_ControlGroup,Lcd_E,Low);
+
+}
+void Lcd_GoToXY(u8 XPos,u8 YPos)
+{
+	u8 DDRAM_Addresses = 0;
+	switch(XPos)
+	{
+
+	case Lcd_Line1 : DDRAM_Addresses =Lcd_Line1Address+ YPos ;break;
+	case Lcd_Line2 : DDRAM_Addresses = Lcd_Line2Address +YPos;break;
+	}
+	Lcd_SendCommand(Lcd_SetDDRAM + DDRAM_Addresses);
+}
+
+
+void Display_2LinesMode(u8 Index)
+{
+	if(Index == 16)
+	{
+		Lcd_GoToXY(1,0);
+		_delay_ms(1000);
+	}
+}
+
+
+void Display_ShiftingMode(u8 Index)
+{
+	if(Index == 15)
+	{
+		//Lcd_SendCommand(Lcd_ShiftScreenRight);//
+		Lcd_SendCommand(Lcd_EntryMode3);
+		_delay_ms(2);
+		Lcd_SendCommand(Lcd_ShiftScreenRight);
+		_delay_ms(40);
+		//Lcd_GoToXY(0,16);
+		//_delay_ms(1000);
+	}
+}

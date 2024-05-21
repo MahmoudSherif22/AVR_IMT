@@ -1,0 +1,20 @@
+19:29:20 **** Incremental Build of configuration Debug for project Task3_rev_SevenSegments ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega32 Task3_rev_SevenSegments.elf
+AVR Memory Usage
+----------------
+Device: atmega32
+
+Program:    3394 bytes (10.4% Full)
+(.text + .data + .bootloader)
+
+Data:         18 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+19:29:20 Build Finished (took 203ms)
+

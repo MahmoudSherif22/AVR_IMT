@@ -1,0 +1,68 @@
+16:06:44 **** Build of configuration Debug for project Assignment1 ****
+make all 
+Building file: ../Source/Buzzer.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"Source/Buzzer.d" -MT"Source/Buzzer.o" -c -o "Source/Buzzer.o" "../Source/Buzzer.c"
+In file included from ../Source/Buzzer.c:7:
+c:/users/20110/desktop/avr/embeddedsystem/tool/01- imt sdk/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/lib/gcc/../../avr/include/util\delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+Finished building: ../Source/Buzzer.c
+ 
+Building file: ../Source/Implementation.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"Source/Implementation.d" -MT"Source/Implementation.o" -c -o "Source/Implementation.o" "../Source/Implementation.c"
+In file included from ../Source/Implementation.c:9:
+c:/users/20110/desktop/avr/embeddedsystem/tool/01- imt sdk/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/lib/gcc/../../avr/include/util\delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+../Source/Implementation.c: In function 'Control_Leds':
+../Source/Implementation.c:40: warning: implicit declaration of function 'BuzzerOn'
+Finished building: ../Source/Implementation.c
+ 
+Building file: ../Source/seven_segments.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"Source/seven_segments.d" -MT"Source/seven_segments.o" -c -o "Source/seven_segments.o" "../Source/seven_segments.c"
+In file included from ../Source/seven_segments.c:7:
+c:/users/20110/desktop/avr/embeddedsystem/tool/01- imt sdk/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/lib/gcc/../../avr/include/util\delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+Finished building: ../Source/seven_segments.c
+ 
+Building file: ../main.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"main.d" -MT"main.o" -c -o "main.o" "../main.c"
+In file included from ../main.c:8:
+c:/users/20110/desktop/avr/embeddedsystem/tool/01- imt sdk/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/lib/gcc/../../avr/include/util\delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+../main.c: In function 'main':
+../main.c:29: warning: integer overflow in expression
+../main.c:36: warning: integer overflow in expression
+../main.c:38: warning: implicit declaration of function 'Buzzeroff'
+../main.c:43: warning: integer overflow in expression
+Finished building: ../main.c
+ 
+Building target: Assignment1.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,Assignment1.map -mmcu=atmega32 -o "Assignment1.elf"  ./Source/Buzzer.o ./Source/Implementation.o ./Source/seven_segments.o  ./main.o   
+Finished building target: Assignment1.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S Assignment1.elf  >"Assignment1.lss"
+Finished building: Assignment1.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex Assignment1.elf  "Assignment1.hex"
+Finished building: Assignment1.hex
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega32 Assignment1.elf
+AVR Memory Usage
+----------------
+Device: atmega32
+
+Program:    6398 bytes (19.5% Full)
+(.text + .data + .bootloader)
+
+Data:        274 bytes (13.4% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+16:06:46 Build Finished (took 1s.225ms)
+

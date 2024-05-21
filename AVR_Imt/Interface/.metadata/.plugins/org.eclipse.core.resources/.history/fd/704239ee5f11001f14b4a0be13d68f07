@@ -1,0 +1,24 @@
+/*
+ * ADC_Config.h
+ *
+ *  Created on: May 10, 2024
+ *      Author: 20110
+ */
+
+#ifndef MCAL_ADC_HEADER_ADC_CONFIG_H_
+#define MCAL_ADC_HEADER_ADC_CONFIG_H_
+
+#define ADC_RefernceSelection AVCC
+
+#define ADC_AdjustSelect RightAdjust
+
+#define ADC_ModeSelect SingleMode
+
+#define ADC_IntrruptMode ADC_Interruptdisable
+#define ADC_PrescalerMode PreScalerBy8
+
+
+#if ADC_ModeSelect == AutoTrigger
+#define ADC_TriggerSource FreeRunning
+#endif
+#endif /* MCAL_ADC_HEADER_ADC_CONFIG_H_ */

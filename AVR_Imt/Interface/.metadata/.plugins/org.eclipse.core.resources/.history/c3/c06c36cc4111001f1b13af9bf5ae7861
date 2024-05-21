@@ -1,0 +1,17 @@
+/*
+ * tstt.c
+ *
+ *  Created on: May 13, 2024
+ *      Author: 20110
+ */
+#include"util/delay.h"
+#include"MCAL/DIO/Header/DIO_Interface.h"
+void main()
+{
+
+	DIO_DDRA = 0xff;
+	while(1){
+	DIO_PORTA = 0x0f;
+	_delay_ms(1000);
+	}
+}

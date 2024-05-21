@@ -1,0 +1,58 @@
+17:14:35 **** Incremental Build of configuration Debug for project layer_archi ****
+make all 
+Building file: ../Mcal/DIO/Src/DIO_Program.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"Mcal/DIO/Src/DIO_Program.d" -MT"Mcal/DIO/Src/DIO_Program.o" -c -o "Mcal/DIO/Src/DIO_Program.o" "../Mcal/DIO/Src/DIO_Program.c"
+Finished building: ../Mcal/DIO/Src/DIO_Program.c
+ 
+Building file: ../Hal/Lcd/Src/Lcd_Program.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"Hal/Lcd/Src/Lcd_Program.d" -MT"Hal/Lcd/Src/Lcd_Program.o" -c -o "Hal/Lcd/Src/Lcd_Program.o" "../Hal/Lcd/Src/Lcd_Program.c"
+In file included from ../Hal/Lcd/Src/Lcd_Program.c:7:
+c:/users/20110/desktop/avr/embeddedsystem/tool/01- imt sdk/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+Finished building: ../Hal/Lcd/Src/Lcd_Program.c
+ 
+Building file: ../Hal/Keypad/Src/Keypad_Program.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"Hal/Keypad/Src/Keypad_Program.d" -MT"Hal/Keypad/Src/Keypad_Program.o" -c -o "Hal/Keypad/Src/Keypad_Program.o" "../Hal/Keypad/Src/Keypad_Program.c"
+Finished building: ../Hal/Keypad/Src/Keypad_Program.c
+ 
+Building file: ../App.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"App.d" -MT"App.o" -c -o "App.o" "../App.c"
+In file included from ../App.c:1:
+c:/users/20110/desktop/avr/embeddedsystem/tool/01- imt sdk/01- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+../App.c:22: warning: return type of 'main' is not 'int'
+Finished building: ../App.c
+ 
+Building target: layer_archi.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,layer_archi.map -mmcu=atmega32 -o "layer_archi.elf"  ./Mcal/DIO/Src/DIO_Program.o  ./Hal/Lcd/Src/Lcd_Program.o  ./Hal/Keypad/Src/Keypad_Program.o  ./App.o   
+Finished building target: layer_archi.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S layer_archi.elf  >"layer_archi.lss"
+Finished building: layer_archi.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex layer_archi.elf  "layer_archi.hex"
+Finished building: layer_archi.hex
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega32 layer_archi.elf
+AVR Memory Usage
+----------------
+Device: atmega32
+
+Program:    6754 bytes (20.6% Full)
+(.text + .data + .bootloader)
+
+Data:         26 bytes (1.3% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+17:14:36 Build Finished (took 859ms)
+

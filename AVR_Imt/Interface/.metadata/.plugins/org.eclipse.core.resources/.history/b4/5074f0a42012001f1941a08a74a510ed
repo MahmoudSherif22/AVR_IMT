@@ -1,0 +1,15 @@
+/*
+ * tstt.c
+ *
+ *  Created on: May 14, 2024
+ *      Author: 20110
+ */
+
+#include"MCAL/DIO/Header/DIO_Interface.h"
+void main()
+{
+
+	DIO_DDRA = 0xff;
+
+}
+

@@ -1,0 +1,223 @@
+/*
+ * Steppermotor_Program.c
+ *
+ *  Created on: Apr 26, 2024
+ *      Author: 20110
+ */
+#include"util/delay.h"
+#include"../Header/Steppermotor_Interface.h"
+
+void StepperMotor_Init()
+{
+	DIO_SelectDirectionForPin(StepperMotorGroup,StepperMotor_Blue,Output);
+	DIO_SelectDirectionForPin(StepperMotorGroup,StepperMotor_Bink,Output);
+	DIO_SelectDirectionForPin(StepperMotorGroup,StepperMotor_Yellow,Output);
+	DIO_SelectDirectionForPin(StepperMotorGroup,StepperMotor_Orange,Output);
+
+}
+
+void StepperMotorON_ClkWise()
+{
+
+DIO_SelectDirectionForPin(DIO_GroupD,DIO_Pin0,Low);
+DIO_SelectDirectionForPin(DIO_GroupD,DIO_Pin1,High);
+DIO_SelectDirectionForPin(DIO_GroupD,DIO_Pin2,High);
+DIO_SelectDirectionForPin(DIO_GroupD,DIO_Pin3,High);
+
+_delay_ms(10);
+DIO_SelectDirectionForPin(DIO_GroupD,DIO_Pin0,High);
+DIO_SelectDirectionForPin(DIO_GroupD,DIO_Pin1,Low);
+DIO_SelectDirectionForPin(DIO_GroupD,DIO_Pin2,High);
+DIO_SelectDirectionForPin(DIO_GroupD,DIO_Pin3,High);
+
+_delay_ms(10);
+
+DIO_SelectDirectionForPin(DIO_GroupD,DIO_Pin0,High);
+DIO_SelectDirectionForPin(DIO_GroupD,DIO_Pin1,High);
+DIO_SelectDirectionForPin(DIO_GroupD,DIO_Pin2,Low);
+DIO_SelectDirectionForPin(DIO_GroupD,DIO_Pin3,High);
+
+_delay_ms(10);
+
+DIO_SelectDirectionForPin(DIO_GroupD,DIO_Pin0,High);
+DIO_SelectDirectionForPin(DIO_GroupD,DIO_Pin1,High);
+DIO_SelectDirectionForPin(DIO_GroupD,DIO_Pin2,High);
+DIO_SelectDirectionForPin(DIO_GroupD,DIO_Pin3,Low);
+
+_delay_ms(10);
+
+}
+/*
+void StepperMotorON_ClkWise(u8 StepType, u16 Angle)
+{
+	u16 Iteration_Number = 0;
+	if(StepType == FullStep)
+	{
+		Iteration_Number =  ((Angle/0.1757))/4;
+
+		for(int Counter = 0; Counter < Iteration_Number; Counter++)
+		{
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base0,High);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base1,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base2,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base3,Low);
+			_delay_ms(2);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base0,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base1,High);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base2,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base3,Low);
+			_delay_ms(2);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base0,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base1,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base2,High);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base3,Low);
+			_delay_ms(2);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base0,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base1,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base2,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base3,High);
+			_delay_ms(2);
+		}
+
+
+	}
+
+	else if(StepType == HalfStep)
+	{
+		Iteration_Number = ((Angle/0.08789))/8;
+		for(int Counter = 0; Counter < Iteration_Number; Counter++)
+		{
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base0,High);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base1,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base2,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base3,High);
+			_delay_ms(2);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base0,High);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base1,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base2,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base3,Low);
+			_delay_ms(2);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base0,High);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base1,High);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base2,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base3,Low);
+			_delay_ms(2);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base0,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base1,High);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base2,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base3,Low);
+			_delay_ms(2);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base0,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base1,High);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base2,High);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base3,Low);
+			_delay_ms(2);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base0,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base1,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base2,High);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base3,Low);
+			_delay_ms(2);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base0,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base1,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base2,High);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base3,High);
+			_delay_ms(2);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base0,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base1,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base2,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base3,High);
+			_delay_ms(2);
+		}
+	}
+
+}
+
+void StepperMotorON_AntiClkWise(u8 StepType, u16 Angle)
+{
+	u16 Iteration_Number = 0;
+	if(StepType == FullStep)
+	{
+		Iteration_Number =  ((Angle/0.1757))/4;
+
+		for(int Counter = 0; Counter < Iteration_Number; Counter++)
+		{
+			DIO_SelectOutPutTypeForPin(DIO_GroupA,DIO_Pin0,Low);
+			DIO_SelectOutPutTypeForPin(DIO_GroupA,DIO_Pin1,Low);
+			DIO_SelectOutPutTypeForPin(DIO_GroupA,DIO_Pin2,Low);
+			DIO_SelectOutPutTypeForPin(DIO_GroupA,DIO_Pin3,High);
+			_delay_ms(2);
+			DIO_SelectOutPutTypeForPin(DIO_GroupA,DIO_Pin0,Low);
+			DIO_SelectOutPutTypeForPin(DIO_GroupA,DIO_Pin1,Low);
+			DIO_SelectOutPutTypeForPin(DIO_GroupA,DIO_Pin2,High);
+			DIO_SelectOutPutTypeForPin(DIO_GroupA,DIO_Pin3,Low);
+			_delay_ms(2);
+			DIO_SelectOutPutTypeForPin(DIO_GroupA,DIO_Pin0,Low);
+			DIO_SelectOutPutTypeForPin(DIO_GroupA,DIO_Pin1,High);
+			DIO_SelectOutPutTypeForPin(DIO_GroupA,DIO_Pin2,Low);
+			DIO_SelectOutPutTypeForPin(DIO_GroupA,DIO_Pin3,Low);
+			_delay_ms(2);
+			DIO_SelectOutPutTypeForPin(DIO_GroupA,DIO_Pin0,High);
+			DIO_SelectOutPutTypeForPin(DIO_GroupA,DIO_Pin1,Low);
+			DIO_SelectOutPutTypeForPin(DIO_GroupA,DIO_Pin2,Low);
+			DIO_SelectOutPutTypeForPin(DIO_GroupA,DIO_Pin3,Low);
+			_delay_ms(2);
+		}
+
+
+	}
+
+	else if(StepType == HalfStep)
+	{
+		Iteration_Number = ((Angle/0.08789))/8;
+		for(int Counter = 0; Counter < Iteration_Number; Counter++)
+		{
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base0,High);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base1,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base2,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base3,High);
+			_delay_ms(2);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base0,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base1,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base2,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base3,High);
+			_delay_ms(2);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base0,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base1,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base2,High);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base3,High);
+			_delay_ms(2);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base0,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base1,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base2,High);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base3,Low);
+			_delay_ms(2);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base0,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base1,High);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base2,High);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base3,Low);
+			_delay_ms(2);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base0,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base1,High);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base2,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base3,Low);
+			_delay_ms(2);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base0,High);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base1,High);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base2,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base3,Low);
+			_delay_ms(2);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base0,High);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base1,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base2,Low);
+			DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base3,Low);
+			_delay_ms(2);
+		}
+	}
+}
+void StepperMotorOFF()
+{
+	DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base0,Low);
+	DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base1,Low);
+	DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base2,Low);
+	DIO_SelectOutPutTypeForPin(StepperMotorGroup,StepperMotor_base3,Low);
+}*/

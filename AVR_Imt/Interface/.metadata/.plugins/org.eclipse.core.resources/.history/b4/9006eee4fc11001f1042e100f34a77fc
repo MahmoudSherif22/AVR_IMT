@@ -1,0 +1,23 @@
+/*
+ * tstttt.c
+ *
+ *  Created on: May 14, 2024
+ *      Author: 20110
+ */
+
+#include"MCAL/DIO/Header/DIO_Interface.h"
+
+void main()
+{
+
+while(1){
+DIO_DDRA = 0xff;
+DIO_PORTA = 0xff;
+DIO_DDRC = 0xff;
+DIO_PORTC = 0xff;
+DIO_DDRD = 0xff;
+DIO_PORTD = 0xff;
+DIO_DDRB = 0xff;
+DIO_PORTB = 0xff;
+}
+}

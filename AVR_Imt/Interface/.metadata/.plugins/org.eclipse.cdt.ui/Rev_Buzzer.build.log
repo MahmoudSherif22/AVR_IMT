@@ -1,0 +1,33 @@
+18:54:47 **** Incremental Build of configuration Debug for project Rev_Buzzer ****
+make all 
+Building target: Rev_Buzzer.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,Rev_Buzzer.map -mmcu=atmega32 -o "Rev_Buzzer.elf"  ./Source/Buzzer.o  ./main.o   
+Finished building target: Rev_Buzzer.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S Rev_Buzzer.elf  >"Rev_Buzzer.lss"
+Finished building: Rev_Buzzer.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex Rev_Buzzer.elf  "Rev_Buzzer.hex"
+Finished building: Rev_Buzzer.hex
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega32 Rev_Buzzer.elf
+AVR Memory Usage
+----------------
+Device: atmega32
+
+Program:    4584 bytes (14.0% Full)
+(.text + .data + .bootloader)
+
+Data:        264 bytes (12.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+18:54:47 Build Finished (took 617ms)
+

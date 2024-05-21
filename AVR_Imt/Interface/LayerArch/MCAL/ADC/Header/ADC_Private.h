@@ -1,0 +1,128 @@
+/*
+ * ADC_Private.h
+ *
+ *  Created on: May 10, 2024
+ *      Author: 20110
+ */
+
+#ifndef MCAL_ADC_HEADER_ADC_PRIVATE_H_
+#define MCAL_ADC_HEADER_ADC_PRIVATE_H_
+
+// ADMUX Reg
+
+#define ADC_REFS1 7
+#define ADC_REFS0 6
+
+#define ADC_ADLAR 5
+
+#define ADC_MUX4  4
+#define ADC_MUX3  3
+#define ADC_MUX2  2
+#define ADC_MUX1  1
+#define ADC_MUX0  0
+
+#define LeftAdjust 1
+#define RightAdjust 2
+
+// Voltage Reference Selection
+#define ExternalAref 0
+#define AVCC 1
+#define InternalAref 3
+
+typedef enum
+
+{
+	SingleEndedInput0,
+	SingleEndedInput1,
+	SingleEndedInput2,
+	SingleEndedInput3,
+	SingleEndedInput4,
+	SingleEndedInput5,
+	SingleEndedInput6,
+	SingleEndedInput7,
+	GainDifferentialWithGain10Channel0,
+	GainDifferentialWithGain10Channel1_0,
+	GainDifferentialWithGain200Channel0,
+	GainDifferentialWithGain200Channel1_0,
+	GainDifferentialWithGain10Channel2,
+	GainDifferentialWithGain10Channel3_2,
+	GainDifferentialWithGain200Channel2,
+	GainDifferentialWithGain200Channel3_2,
+	NormalDifferentialChannel0_1,
+	NormalDifferentialChannel1_1,
+	NormalDifferentialChannel2_1,
+	NormalDifferentialChannel3_1,
+	NormalDifferentialChannel4_1,
+	NormalDifferentialChannel5_1,
+	NormalDifferentialChannel6_1,
+	NormalDifferentialChannel7_1,
+	NormalDifferentialChannel0_2,
+	NormalDifferentialChannel1_2,
+	NormalDifferentialChannel2_2,
+	NormalDifferentialChannel3_2,
+	NormalDifferentialChannel4_2,
+	NormalDifferentialChannel5_2,
+	SingleEndedVolt_1v,
+	SingleEndedGnd
+
+}InputChannelSelection;
+
+
+// ADCSRA Reg
+
+#define ADC_ADEN   7
+#define ADC_ADSC   6
+#define ADC_ADATE  5
+#define ADC_ADIF   4
+#define ADC_ADIE   3
+#define ADC_ADPS2  2
+#define ADC_ADPS1  1
+#define ADC_ADPS0  0
+
+
+/*Options ADCSRA*/
+// 1- Auto Trigger
+#define AutoTrigger 1
+#define SingleMode 2
+
+// 2- Interrupt
+
+#define ADC_InterruptEnable 1
+#define ADC_Interruptdisable 2
+
+// 3- Prescaler
+
+typedef enum
+{
+PreScalerBy2 = 1,
+PreScalerBy4,
+PreScalerBy8,
+PreScalerBy16,
+PreScalerBy32,
+PreScalerBy64,
+PreScalerBy128,
+}Prescaler;
+
+
+// SFIOR
+
+#define ADC_ADTS2 7
+#define ADC_ADTS1 6
+#define ADC_ADTS0 5
+
+typedef enum
+{
+
+	FreeRunning,
+	AnalogCompartor = 32  ,
+	EXTI0           = 64  ,
+	Timer0CTC       = 96  ,
+	Timer0OVF       = 128 ,
+	Timer1CTCB      = 160 ,
+	Timer1OVF       = 192 ,
+	Timer1ICU       = 224
+
+
+}TriggerSource;
+
+#endif /* MCAL_ADC_HEADER_ADC_PRIVATE_H_ */

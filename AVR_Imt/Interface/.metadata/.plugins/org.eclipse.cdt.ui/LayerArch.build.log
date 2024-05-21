@@ -1,0 +1,39 @@
+21:53:06 **** Incremental Build of configuration Debug for project LayerArch ****
+make all 
+Building file: ../StepperMotorTask.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"StepperMotorTask.d" -MT"StepperMotorTask.o" -c -o "StepperMotorTask.o" "../StepperMotorTask.c"
+../StepperMotorTask.c:9: warning: return type of 'main' is not 'int'
+Finished building: ../StepperMotorTask.c
+ 
+Building target: LayerArch.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,LayerArch.map -mmcu=atmega32 -o "LayerArch.elf"  ./MCAL/GIE/GIE.o  ./MCAL/EXTI/Src/Exti_Program.o  ./MCAL/DIO/Src/DIO_Program.o  ./MCAL/ADC/Src/ADC_Program.o  ./HAL/Steppermotor/Src/Steppermoto_Program.o  ./HAL/Lcd/Src/Lcd_Program.o  ./HAL/Keypad/Src/Keypad_Program.o  ./HAL/Dcmotor/Src/DCmotor_Program.o  ./App/App.o ./App/Interrupttst.o ./App/KeypadTask.o ./App/Sensors.o  ./StepperMotorTask.o   
+Finished building target: LayerArch.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LayerArch.elf  >"LayerArch.lss"
+Finished building: LayerArch.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LayerArch.elf  "LayerArch.hex"
+Finished building: LayerArch.hex
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega32 LayerArch.elf
+AVR Memory Usage
+----------------
+Device: atmega32
+
+Program:   16120 bytes (49.2% Full)
+(.text + .data + .bootloader)
+
+Data:        289 bytes (14.1% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+21:53:07 Build Finished (took 767ms)
+

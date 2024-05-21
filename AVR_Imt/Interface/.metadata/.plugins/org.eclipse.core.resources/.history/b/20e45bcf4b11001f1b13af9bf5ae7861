@@ -1,0 +1,15 @@
+/*
+ * ADC_Config.h
+ *
+ *  Created on: May 10, 2024
+ *      Author: 20110
+ */
+
+#ifndef MCAL_ADC_HEADER_ADC_CONFIG_H_
+#define MCAL_ADC_HEADER_ADC_CONFIG_H_
+#include"ADC_Private.h"
+
+#define ADC_RefernceSelection AVCC
+#define ADC_AdjustSelect RightAdjust
+
+#endif /* MCAL_ADC_HEADER_ADC_CONFIG_H_ */
